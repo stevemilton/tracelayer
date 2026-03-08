@@ -4,229 +4,238 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TraceLayer — AI Governance Gateway for Regulated Enterprises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0F2444;
-    --navy-mid: #1E3A5F;
-    --sky: #0EA5E9;
-    --sky-light: #38BDF8;
-    --sky-pale: #E0F2FE;
-    --teal: #0D9488;
-    --slate: #334155;
-    --slate-light: #64748B;
-    --off-white: #F8FAFC;
+    --charcoal: #1C1C1E;
+    --charcoal-mid: #2C2C2E;
+    --slate-900: #0F172A;
+    --slate-600: #475569;
+    --slate-400: #94A3B8;
+    --accent: #2563EB;
+    --accent-light: #DBEAFE;
+    --border: #E5E7EB;
+    --bg-subtle: #F9FAFB;
     --white: #FFFFFF;
-    --border: #E2E8F0;
-    --danger: #DC2626;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    color: var(--slate);
+    color: var(--slate-600);
     background: var(--white);
-    line-height: 1.6;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--slate-900);
+  }
+
+  /* FOCUS */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(15, 36, 68, 0.97);
+    background: rgba(28, 28, 30, 0.97);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     padding: 0 5%;
     display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
+    height: 64px;
   }
   .nav-logo {
-    font-size: 1.35rem; font-weight: 800; letter-spacing: -0.03em;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em;
     color: var(--white);
   }
-  .nav-logo span { color: var(--sky); }
+  .nav-logo span { color: var(--white); opacity: 0.5; }
   .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a {
+    color: rgba(255,255,255,0.55); text-decoration: none;
+    font-size: 0.87rem; font-weight: 500; transition: color 0.2s;
+  }
   .nav-links a:hover { color: var(--white); }
   .btn-nav {
-    background: var(--sky);
+    background: var(--accent);
     color: var(--white); border: none; border-radius: 6px;
-    padding: 9px 20px; font-size: 0.87rem; font-weight: 600; cursor: pointer;
+    padding: 8px 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
     text-decoration: none; transition: background 0.2s;
   }
-  .btn-nav:hover { background: var(--sky-light); }
+  .btn-nav:hover { background: #1D4ED8; }
+
+  /* HAMBURGER */
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger svg { display: block; }
+  #nav-toggle { display: none; }
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, var(--navy) 0%, #162D4F 60%, #1A3660 100%);
-    padding: 110px 5% 100px;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(14,165,233,0.12) 0%, transparent 70%);
+    background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-mid) 100%);
+    padding: 140px 5% 120px;
+    position: relative;
   }
   .hero-grid {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto;
     display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-    position: relative;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(14,165,233,0.15); border: 1px solid rgba(14,165,233,0.3);
-    color: var(--sky-light); border-radius: 100px; padding: 6px 14px;
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
-    margin-bottom: 1.5rem;
+    background: transparent; border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5); border-radius: 100px; padding: 6px 14px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+    margin-bottom: 1.8rem;
   }
-  .hero-badge .dot { width: 6px; height: 6px; background: var(--sky); border-radius: 50%; }
   h1.hero-headline {
-    font-size: 3.2rem; font-weight: 800; line-height: 1.12; letter-spacing: -0.04em;
-    color: var(--white); margin-bottom: 1.4rem;
+    font-size: 3rem; font-weight: 800; line-height: 1.12; letter-spacing: -0.03em;
+    color: var(--white); margin-bottom: 1.6rem;
   }
-  h1.hero-headline em { color: var(--sky); font-style: normal; }
+  h1.hero-headline em { color: rgba(255,255,255,0.45); font-style: normal; }
   .hero-sub {
-    font-size: 1.1rem; color: rgba(255,255,255,0.68); line-height: 1.7; margin-bottom: 2.2rem;
+    font-size: 1.05rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 2.5rem;
+    max-width: 480px;
   }
   .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn-primary {
-    background: var(--sky); color: var(--white); border: none; border-radius: 8px;
-    padding: 14px 28px; font-size: 0.97rem; font-weight: 700; cursor: pointer;
-    text-decoration: none; transition: all 0.2s; display: inline-block;
+    background: var(--accent); color: var(--white); border: none; border-radius: 6px;
+    padding: 14px 28px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    text-decoration: none; display: inline-block; transition: background 0.2s;
   }
-  .btn-primary:hover { background: var(--sky-light); transform: translateY(-1px); }
+  .btn-primary:hover { background: #1D4ED8; }
   .btn-ghost {
-    background: transparent; color: var(--white);
-    border: 1.5px solid rgba(255,255,255,0.28); border-radius: 8px;
-    padding: 14px 28px; font-size: 0.97rem; font-weight: 600; cursor: pointer;
-    text-decoration: none; transition: all 0.2s; display: inline-block;
+    background: transparent; color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 6px;
+    padding: 14px 28px; font-size: 0.95rem; font-weight: 500; cursor: pointer;
+    text-decoration: none; display: inline-block; transition: border-color 0.2s;
   }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); transform: translateY(-1px); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.8); }
   .hero-stats {
-    display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2.5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; gap: 3rem; margin-top: 3.5rem;
   }
-  .stat-val { font-size: 1.8rem; font-weight: 800; color: var(--sky); letter-spacing: -0.03em; }
-  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .stat-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em;
+  }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
 
   /* HERO VISUAL */
   .hero-visual {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
     padding: 28px;
-    backdrop-filter: blur(8px);
   }
   .flow-label {
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4); margin-bottom: 1rem;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25); margin-bottom: 1.2rem;
   }
   .flow-step {
     display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px; border-radius: 10px;
-    margin-bottom: 6px;
-    font-size: 0.85rem; font-weight: 500;
-    transition: background 0.2s;
+    padding: 10px 14px; border-radius: 8px;
+    margin-bottom: 4px;
+    font-size: 0.84rem; font-weight: 500;
   }
-  .flow-step.active { background: rgba(14,165,233,0.18); border: 1px solid rgba(14,165,233,0.3); color: var(--white); }
-  .flow-step.idle { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); }
+  .flow-step.active {
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+  }
+  .flow-step.idle { color: rgba(255,255,255,0.4); }
   .flow-step .icon {
-    width: 32px; height: 32px; border-radius: 8px;
+    width: 28px; height: 28px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; flex-shrink: 0;
+    flex-shrink: 0;
   }
-  .flow-step.active .icon { background: var(--sky); color: white; }
-  .flow-step.idle .icon { background: rgba(255,255,255,0.08); }
-  .flow-step .badge {
-    margin-left: auto; font-size: 0.7rem; font-weight: 600; padding: 2px 8px;
-    border-radius: 100px;
-  }
-  .badge-green { background: rgba(16,185,129,0.2); color: #34D399; }
-  .badge-blue { background: rgba(14,165,233,0.2); color: var(--sky-light); }
-  .badge-red { background: rgba(220,38,38,0.2); color: #F87171; }
-  .arrow-down { text-align: center; color: rgba(255,255,255,0.25); font-size: 0.8rem; margin: 2px 0; }
+  .flow-step .icon svg { width: 20px; height: 20px; }
+  .flow-step .step-label { flex: 1; }
+  .arrow-down { text-align: center; color: rgba(255,255,255,0.15); font-size: 0.75rem; margin: 1px 0; }
 
   /* SECTIONS */
-  section { padding: 90px 5%; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
+  section { padding: 110px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
   .section-tag {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--sky); margin-bottom: 1rem;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--slate-400); margin-bottom: 0.8rem;
   }
   .section-headline {
-    font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em;
-    color: var(--navy); margin-bottom: 1rem; line-height: 1.2;
+    font-size: 2.2rem; font-weight: 800;
+    margin-bottom: 1rem; line-height: 1.2;
   }
   .section-sub {
-    font-size: 1.05rem; color: var(--slate-light); max-width: 620px; line-height: 1.7;
+    font-size: 1rem; color: var(--slate-400); max-width: 580px; line-height: 1.7;
   }
 
   /* PROBLEM */
-  .problem { background: var(--off-white); }
+  .problem { background: var(--bg-subtle); }
   .problem-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem;
   }
   .problem-card {
-    background: var(--white); border-radius: 14px;
+    background: var(--white); border-radius: 10px;
     border: 1px solid var(--border);
-    padding: 28px;
+    padding: 32px;
   }
   .problem-icon {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: #FEF2F2; display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; margin-bottom: 1.2rem;
+    width: 24px; height: 24px;
+    margin-bottom: 1.4rem; color: var(--slate-400);
   }
-  .problem-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
-  .problem-card p { font-size: 0.88rem; color: var(--slate-light); line-height: 1.65; }
+  .problem-icon svg { width: 24px; height: 24px; }
+  .problem-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .problem-card p { font-size: 0.88rem; color: var(--slate-600); line-height: 1.7; }
 
   /* HOW IT WORKS */
   .how-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3.5rem;
   }
-  .step-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .step-list { display: flex; flex-direction: column; gap: 0.6rem; }
   .step {
     display: flex; gap: 1rem; align-items: flex-start;
-    padding: 20px; border-radius: 12px; border: 1px solid transparent;
-    cursor: pointer; transition: all 0.2s;
+    padding: 18px; border-radius: 8px; border: 1px solid transparent;
   }
   .step.active {
-    background: var(--sky-pale); border-color: rgba(14,165,233,0.3);
+    background: var(--bg-subtle); border-color: var(--border);
   }
   .step-num {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--navy); color: white;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--charcoal); color: white;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; font-weight: 700; flex-shrink: 0;
   }
-  .step.active .step-num { background: var(--sky); }
-  .step-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
-  .step-text p { font-size: 0.85rem; color: var(--slate-light); line-height: 1.6; }
+  .step.active .step-num { background: var(--accent); }
+  .step-text h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .step-text p { font-size: 0.84rem; color: var(--slate-600); line-height: 1.65; }
 
   .pipeline {
-    background: var(--navy); border-radius: 16px;
-    padding: 30px; font-family: 'SF Mono', 'Fira Code', monospace;
+    background: var(--charcoal); border-radius: 12px;
+    padding: 28px; font-family: 'SF Mono', 'Fira Code', monospace;
   }
-  .pipeline-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 1.2rem; }
+  .pipeline-title {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25); margin-bottom: 1.2rem;
+  }
   .pipe-row {
     display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
   }
   .pipe-box {
-    padding: 8px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 600;
-    border: 1px solid transparent;
+    padding: 8px 14px; border-radius: 6px; font-size: 0.74rem; font-weight: 500;
+    background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.08);
   }
-  .pipe-client { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.12); }
-  .pipe-auth { background: rgba(245,158,11,0.15); color: #FCD34D; border-color: rgba(245,158,11,0.3); }
-  .pipe-policy { background: rgba(139,92,246,0.15); color: #C4B5FD; border-color: rgba(139,92,246,0.3); }
-  .pipe-dlp { background: rgba(220,38,38,0.15); color: #FCA5A5; border-color: rgba(220,38,38,0.3); }
-  .pipe-route { background: rgba(14,165,233,0.15); color: var(--sky-light); border-color: rgba(14,165,233,0.3); }
-  .pipe-audit { background: rgba(16,185,129,0.15); color: #6EE7B7; border-color: rgba(16,185,129,0.3); }
-  .pipe-arrow { color: rgba(255,255,255,0.25); font-size: 0.9rem; }
-  .pipe-detail { font-size: 0.68rem; color: rgba(255,255,255,0.3); margin-top: 2px; margin-left: 14px; }
+  .pipe-arrow { color: rgba(255,255,255,0.2); font-size: 0.85rem; }
+  .pipe-detail { font-size: 0.67rem; color: rgba(255,255,255,0.25); margin-top: 2px; margin-left: 14px; }
   .pipe-latency {
-    margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 0.75rem; color: rgba(255,255,255,0.35);
+    margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.74rem; color: rgba(255,255,255,0.3);
     display: flex; gap: 2rem;
   }
-  .pipe-latency strong { color: var(--sky-light); }
+  .pipe-latency strong { color: rgba(255,255,255,0.7); }
 
   /* FEATURES */
   .features { background: var(--white); }
@@ -234,134 +243,115 @@
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem;
   }
   .feat-card {
-    border: 1px solid var(--border); border-radius: 16px; padding: 30px;
-    transition: all 0.25s; position: relative; overflow: hidden;
+    border: 1px solid var(--border); border-radius: 10px; padding: 34px;
   }
-  .feat-card:hover { border-color: var(--sky); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(14,165,233,0.12); }
-  .feat-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--sky), var(--teal));
-    opacity: 0; transition: opacity 0.25s;
-  }
-  .feat-card:hover::before { opacity: 1; }
   .feat-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    background: var(--sky-pale); display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; margin-bottom: 1.4rem;
+    width: 24px; height: 24px;
+    margin-bottom: 1.4rem; color: var(--slate-400);
   }
-  .feat-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.7rem; }
-  .feat-card p { font-size: 0.87rem; color: var(--slate-light); line-height: 1.65; }
-  .feat-tag {
-    display: inline-block; margin-top: 1rem;
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
-    color: var(--sky); background: var(--sky-pale); padding: 3px 10px; border-radius: 100px;
-  }
+  .feat-icon svg { width: 24px; height: 24px; }
+  .feat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.7rem; }
+  .feat-card p { font-size: 0.87rem; color: var(--slate-600); line-height: 1.7; }
 
   /* PERSONAS */
-  .personas { background: var(--off-white); }
+  .personas { background: var(--bg-subtle); }
   .persona-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
   .persona-card {
-    background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 26px;
+    background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 30px;
   }
-  .persona-avatar {
-    font-size: 2rem; width: 56px; height: 56px; border-radius: 14px;
-    background: var(--sky-pale); display: flex; align-items: center; justify-content: center;
+  .persona-icon {
+    width: 24px; height: 24px; color: var(--slate-400);
     margin-bottom: 1.2rem;
   }
-  .persona-card h3 { font-size: 0.92rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
-  .persona-role { font-size: 0.75rem; color: var(--sky); font-weight: 600; margin-bottom: 1rem; }
+  .persona-icon svg { width: 24px; height: 24px; }
+  .persona-card h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .persona-role { font-size: 0.75rem; color: var(--slate-400); font-weight: 500; margin-bottom: 1.2rem; }
   .persona-list { list-style: none; }
   .persona-list li {
-    font-size: 0.82rem; color: var(--slate); padding: 5px 0;
+    font-size: 0.82rem; color: var(--slate-600); padding: 6px 0;
     border-bottom: 1px solid var(--border); line-height: 1.5;
   }
   .persona-list li:last-child { border-bottom: none; }
-  .persona-list li::before { content: '✓  '; color: var(--teal); font-weight: 700; }
+  .persona-list li::before { content: '\2713\00a0\00a0'; color: var(--slate-400); font-weight: 600; }
 
   /* COMPLIANCE */
-  .compliance { background: var(--navy); color: white; }
+  .compliance { background: var(--charcoal); color: white; }
   .compliance .section-headline { color: white; }
-  .compliance .section-sub { color: rgba(255,255,255,0.6); }
-  .compliance .section-tag { color: var(--sky-light); }
+  .compliance .section-sub { color: rgba(255,255,255,0.4); }
+  .compliance .section-tag { color: rgba(255,255,255,0.3); }
   .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; margin-top: 3.5rem; }
   .comp-list { display: flex; flex-direction: column; gap: 1rem; }
   .comp-item {
     display: flex; gap: 1rem; align-items: flex-start;
-    padding: 20px; border-radius: 12px;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    padding: 20px; border-radius: 8px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
   }
   .comp-check {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: rgba(13,148,136,0.3); border: 1.5px solid var(--teal);
-    display: flex; align-items: center; justify-content: center;
-    color: #5EEAD4; font-size: 0.75rem; flex-shrink: 0; margin-top: 2px;
+    width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;
+    color: rgba(255,255,255,0.4);
   }
+  .comp-check svg { width: 20px; height: 20px; }
   .comp-item h4 { font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.3rem; }
-  .comp-item p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.55; }
+  .comp-item p { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
   .comp-frameworks {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     align-content: start;
   }
   .framework-badge {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px; padding: 22px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 22px;
     display: flex; flex-direction: column; gap: 6px;
   }
-  .framework-badge .fw-name { font-size: 1rem; font-weight: 700; color: white; }
-  .framework-badge .fw-desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+  .framework-badge .fw-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem; font-weight: 700; color: white;
+  }
+  .framework-badge .fw-desc { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
   .framework-badge .fw-status {
-    font-size: 0.7rem; font-weight: 700; color: #34D399;
-    letter-spacing: 0.08em; margin-top: 4px;
+    font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em; margin-top: 4px;
   }
 
   /* TECH STACK */
-  .tech { background: var(--white); }
+  .tech { background: var(--bg-subtle); }
   .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 3rem; }
   .stack-item {
-    border: 1px solid var(--border); border-radius: 12px; padding: 20px;
-    text-align: center;
+    border: 1px solid var(--border); border-radius: 8px; padding: 20px;
+    text-align: center; background: var(--white);
   }
-  .stack-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
-  .stack-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
-  .stack-role { font-size: 0.75rem; color: var(--slate-light); margin-top: 4px; }
+  .stack-name { font-size: 0.88rem; font-weight: 700; }
+  .stack-role { font-size: 0.75rem; color: var(--slate-400); margin-top: 4px; }
 
   /* METRICS */
-  .metrics { background: linear-gradient(135deg, #0D1829 0%, #0F2444 100%); }
+  .metrics { background: var(--charcoal); }
   .metrics .section-headline { color: white; }
-  .metrics .section-tag { color: var(--sky-light); }
+  .metrics .section-tag { color: rgba(255,255,255,0.3); }
   .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
   .metric-card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 14px; padding: 28px; text-align: center;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px; padding: 28px; text-align: center;
   }
-  .metric-val { font-size: 2.8rem; font-weight: 800; color: var(--sky); letter-spacing: -0.04em; }
-  .metric-unit { font-size: 1.2rem; color: var(--sky-light); }
-  .metric-label { font-size: 0.83rem; color: rgba(255,255,255,0.5); margin-top: 8px; line-height: 1.4; }
+  .metric-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.6rem; font-weight: 800; color: var(--white); letter-spacing: -0.03em;
+  }
+  .metric-unit { font-size: 1.1rem; color: rgba(255,255,255,0.45); }
+  .metric-label { font-size: 0.82rem; color: rgba(255,255,255,0.35); margin-top: 8px; line-height: 1.5; }
 
-  /* CTA FOOTER */
-  .cta-section { background: var(--sky-pale); text-align: center; padding: 90px 5%; }
-  .cta-section .section-headline { color: var(--navy); margin: 0 auto 1rem; max-width: 700px; }
-  .cta-section p { color: var(--slate-light); margin-bottom: 2.5rem; font-size: 1.05rem; }
-  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-cta-primary {
-    background: var(--navy); color: white; border-radius: 8px; padding: 16px 36px;
-    font-size: 1rem; font-weight: 700; text-decoration: none; transition: background 0.2s;
-  }
-  .btn-cta-primary:hover { background: var(--navy-mid); }
-  .btn-cta-secondary {
-    background: white; color: var(--navy); border: 2px solid var(--navy);
-    border-radius: 8px; padding: 16px 36px;
-    font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.2s;
-  }
-  .btn-cta-secondary:hover { background: var(--navy); color: white; }
+  /* CTA */
+  .cta-section { background: var(--bg-subtle); text-align: center; padding: 110px 5%; }
+  .cta-section .section-headline { margin: 0 auto 1rem; max-width: 600px; }
+  .cta-section p { color: var(--slate-400); margin-bottom: 2.5rem; font-size: 1rem; }
 
   /* FOOTER */
   footer {
-    background: var(--navy); color: rgba(255,255,255,0.45);
-    padding: 40px 5%; text-align: center; font-size: 0.82rem;
+    background: var(--charcoal); color: rgba(255,255,255,0.3);
+    padding: 32px 5%; text-align: center; font-size: 0.8rem;
   }
-  footer .logo { font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: 8px; }
-  footer .logo span { color: var(--sky); }
+  footer .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem; font-weight: 800; color: rgba(255,255,255,0.6); margin-bottom: 6px;
+  }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
@@ -371,22 +361,99 @@
     .persona-grid { grid-template-columns: 1fr 1fr; }
     .metrics-grid { grid-template-columns: 1fr 1fr; }
     .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 80px 5%; }
   }
   @media (max-width: 600px) {
     .problem-grid, .feat-grid, .persona-grid, .stack-grid { grid-template-columns: 1fr; }
     .hero-stats { flex-direction: column; gap: 1rem; }
     .comp-frameworks { grid-template-columns: 1fr; }
-    h1.hero-headline { font-size: 1.9rem; }
-    .section-headline { font-size: 1.8rem; }
-    nav .nav-links { display: none; }
+    h1.hero-headline { font-size: 1.8rem; }
+    .section-headline { font-size: 1.7rem; }
+    .hero { padding: 100px 5% 80px; }
+    .metrics-grid { grid-template-columns: 1fr; }
+
+    /* Mobile nav */
+    nav .nav-links {
+      display: none; flex-direction: column; position: absolute;
+      top: 64px; left: 0; right: 0; background: var(--charcoal);
+      padding: 1.5rem 5%; gap: 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    #nav-toggle:checked ~ .nav-links { display: flex; }
+    .hamburger { display: block; }
   }
 </style>
 </head>
 <body>
 
+<!-- INLINE SVG DEFS -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+  </symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+  </symbol>
+  <symbol id="icon-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
+  </symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/>
+  </symbol>
+  <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="17" cy="14" r="1"/>
+  </symbol>
+  <symbol id="icon-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22v-5"/><path d="M9 7V2"/><path d="M15 7V2"/><rect x="5" y="7" width="14" height="5" rx="1"/><path d="M5 12v2a7 7 0 007 7 7 7 0 007-7v-2"/>
+  </symbol>
+  <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01"/>
+  </symbol>
+  <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+  </symbol>
+  <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+  </symbol>
+  <symbol id="icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/>
+  </symbol>
+  <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/>
+  </symbol>
+  <symbol id="icon-pound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 20h10"/><path d="M10 20c0-4.4 2-7 2-10a4 4 0 10-8 0"/><path d="M6 14h8"/>
+  </symbol>
+  <symbol id="icon-scales" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3v18"/><path d="M5 7l7-4 7 4"/><path d="M5 7l-2 8h4.5"/><path d="M19 7l2 8h-4.5"/><circle cx="5" cy="15" r="2.5" fill="none"/><circle cx="19" cy="15" r="2.5" fill="none"/>
+  </symbol>
+  <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+  </symbol>
+  <symbol id="icon-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+  </symbol>
+  <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+  </symbol>
+  <symbol id="icon-robot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="3" r="2"/><circle cx="9" cy="14" r="1.5"/><circle cx="15" cy="14" r="1.5"/>
+  </symbol>
+  <symbol id="icon-document" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+</svg>
+
 <!-- NAV -->
-<nav>
+<nav aria-label="Main navigation">
   <div class="nav-logo">Trace<span>Layer</span></div>
+  <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
+  <label class="hamburger" for="nav-toggle">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </label>
   <div class="nav-links">
     <a href="#how">How It Works</a>
     <a href="#features">Features</a>
@@ -397,11 +464,11 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" aria-label="Introduction">
   <div class="hero-grid">
     <div>
-      <div class="hero-badge"><span class="dot"></span>BUILT FOR UK REGULATED INDUSTRIES</div>
-      <h1 class="hero-headline">Your AI Gateway.<br><em>Every Request</em><br>Governed & Proven.</h1>
+      <div class="hero-badge">BUILT FOR UK REGULATED INDUSTRIES</div>
+      <h1 class="hero-headline">Your AI Gateway. <em>Every Request</em> Governed & Proven.</h1>
       <p class="hero-sub">TraceLayer sits between your enterprise and every AI model provider — enforcing policy, protecting sensitive data, and creating an immutable compliance record. In under 150ms.</p>
       <div class="hero-cta">
         <a href="#demo" class="btn-primary">Book a Pilot Demo</a>
@@ -426,57 +493,52 @@
     <div class="hero-visual">
       <div class="flow-label">LIVE REQUEST PIPELINE</div>
       <div class="flow-step idle">
-        <div class="icon">🏢</div>
-        <div>Enterprise Application</div>
-        <div class="badge badge-blue">JWT auth</div>
+        <div class="icon"><svg><use href="#icon-building"/></svg></div>
+        <div class="step-label">Enterprise Application</div>
       </div>
-      <div class="arrow-down">↓</div>
+      <div class="arrow-down">&#8595;</div>
       <div class="flow-step active">
-        <div class="icon">🛡</div>
-        <div>TraceLayer Gateway</div>
-        <div class="badge badge-green">Policy check</div>
+        <div class="icon"><svg><use href="#icon-shield"/></svg></div>
+        <div class="step-label">TraceLayer Gateway</div>
       </div>
-      <div class="arrow-down">↓</div>
+      <div class="arrow-down">&#8595;</div>
       <div class="flow-step active">
-        <div class="icon">🔍</div>
-        <div>DLP Redaction (Presidio)</div>
-        <div class="badge badge-red">PII removed</div>
+        <div class="icon"><svg><use href="#icon-search"/></svg></div>
+        <div class="step-label">DLP Redaction (Presidio)</div>
       </div>
-      <div class="arrow-down">↓</div>
+      <div class="arrow-down">&#8595;</div>
       <div class="flow-step idle">
-        <div class="icon">🤖</div>
-        <div>LLM Provider (Azure OpenAI)</div>
-        <div class="badge badge-green">Clean prompt</div>
+        <div class="icon"><svg><use href="#icon-robot"/></svg></div>
+        <div class="step-label">LLM Provider (Azure OpenAI)</div>
       </div>
-      <div class="arrow-down">↓</div>
+      <div class="arrow-down">&#8595;</div>
       <div class="flow-step active">
-        <div class="icon">📋</div>
-        <div>Immutable Audit Record</div>
-        <div class="badge badge-green">WORM stored</div>
+        <div class="icon"><svg><use href="#icon-document"/></svg></div>
+        <div class="step-label">Immutable Audit Record</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROBLEM -->
-<section class="problem">
+<section class="problem" aria-label="The problem">
   <div class="section-inner">
     <div class="section-tag">THE PROBLEM</div>
-    <h2 class="section-headline">Your employees are already using AI.<br>You just can't see it.</h2>
+    <h2 class="section-headline">Your employees are already using AI. You just can't see it.</h2>
     <p class="section-sub">Shadow AI is the fastest-growing compliance risk in financial services. Without a governance layer, every AI prompt is an uncontrolled data transfer.</p>
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="problem-icon">⚠️</div>
+        <div class="problem-icon"><svg><use href="#icon-warning"/></svg></div>
         <h3>Uncontrolled Data Exposure</h3>
         <p>Customer PII, account numbers, and trading data is being pasted into public AI tools every day — with no visibility, no controls, and no audit trail.</p>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">📊</div>
+        <div class="problem-icon"><svg><use href="#icon-chart"/></svg></div>
         <h3>Unauditable AI Activity</h3>
         <p>When the FCA or your internal audit team asks "what was your AI doing on that date?" — you currently have no answer. TraceLayer gives you one.</p>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">💸</div>
+        <div class="problem-icon"><svg><use href="#icon-pound"/></svg></div>
         <h3>Runaway AI Spend</h3>
         <p>AI API costs are invisible until the invoice arrives. A single poorly-written loop or compromised key can generate thousands of pounds in charges overnight.</p>
       </div>
@@ -485,7 +547,7 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how">
+<section id="how" aria-label="How it works">
   <div class="section-inner">
     <div class="section-tag">HOW IT WORKS</div>
     <h2 class="section-headline">One gateway. Every AI request. Full control.</h2>
@@ -531,15 +593,15 @@
 
       <div class="pipeline">
         <div class="pipeline-title">REQUEST PIPELINE — DETAIL VIEW</div>
-        <div class="pipe-row"><div class="pipe-box pipe-client">Enterprise App</div><div class="pipe-arrow">→</div><div class="pipe-box pipe-auth">JWT Validation</div></div>
+        <div class="pipe-row"><div class="pipe-box">Enterprise App</div><div class="pipe-arrow">&#8594;</div><div class="pipe-box">JWT Validation</div></div>
         <div class="pipe-detail">Resolves tenant_id + app_id from OIDC token</div>
-        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box pipe-policy">OPA Policy Engine</div></div>
+        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box">OPA Policy Engine</div></div>
         <div class="pipe-detail">Evaluates allow/deny + obligations (redact, route, max_tokens)</div>
-        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box pipe-dlp">DLP / Presidio</div></div>
+        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box">DLP / Presidio</div></div>
         <div class="pipe-detail">Scans prompt for PII, PCI, financial identifiers. Masks/hashes in-perimeter.</div>
-        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box pipe-route">Vendor Adapter</div><div class="pipe-arrow">→</div><div class="pipe-box pipe-client">Azure OpenAI / OpenAI</div></div>
+        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box">Vendor Adapter</div><div class="pipe-arrow">&#8594;</div><div class="pipe-box">Azure OpenAI / OpenAI</div></div>
         <div class="pipe-detail">Circuit breakers, retry budgets, provider failover</div>
-        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box pipe-audit">WORM Audit Ledger</div></div>
+        <div class="pipe-row" style="margin-top:10px"><div class="pipe-box">WORM Audit Ledger</div></div>
         <div class="pipe-detail">S3 Object Lock + Merkle root chaining (async, zero latency impact)</div>
         <div class="pipe-latency">
           <span>Total overhead: <strong>&lt;150ms P99</strong></span>
@@ -551,77 +613,68 @@
 </section>
 
 <!-- FEATURES -->
-<section id="features" class="features">
+<section id="features" class="features" aria-label="Platform features">
   <div class="section-inner">
     <div class="section-tag">PLATFORM FEATURES</div>
-    <h2 class="section-headline">Enterprise-grade governance.<br>Developer-first integration.</h2>
+    <h2 class="section-headline">Enterprise-grade governance. Developer-first integration.</h2>
     <div class="feat-grid">
       <div class="feat-card">
-        <div class="feat-icon">🛡️</div>
+        <div class="feat-icon"><svg><use href="#icon-shield"/></svg></div>
         <h3>Policy-as-Code Engine</h3>
         <p>Powered by Open Policy Agent (OPA). Policies are versioned, approved, and deployed as code — with full change history and instant rollback. UK Finance baseline policy pack included.</p>
-        <div class="feat-tag">OPA / Rego</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🔍</div>
+        <div class="feat-icon"><svg><use href="#icon-search"/></svg></div>
         <h3>In-Perimeter DLP</h3>
         <p>Presidio runs entirely within your network boundary. PII, PCI, and financial identifiers are detected and redacted before they ever leave your environment. Safe Streaming mode handles real-time responses.</p>
-        <div class="feat-tag">Microsoft Presidio</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">📋</div>
+        <div class="feat-icon"><svg><use href="#icon-clipboard"/></svg></div>
         <h3>Immutable Audit Trail</h3>
         <p>WORM-compliant storage via AWS S3 Object Lock. Daily Merkle root cryptographic chaining provides tamper-evident proof of completeness. Export signed evidence reports for auditors in PDF or CSV.</p>
-        <div class="feat-tag">WORM · Merkle Chain</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">👤</div>
+        <div class="feat-icon"><svg><use href="#icon-user"/></svg></div>
         <h3>GDPR-Native Pseudonymisation</h3>
         <p>Audit logs store a non-identifiable subject_id UUID — never raw PII. Erasure requests are fulfilled via crypto-shredding, without deleting a single audit record.</p>
-        <div class="feat-tag">GDPR Article 17</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">💰</div>
+        <div class="feat-icon"><svg><use href="#icon-wallet"/></svg></div>
         <h3>Real-Time Cost Governance</h3>
         <p>Atomic reservation-based budget enforcement. Hard caps per cost centre prevent runaway spend. Configurable alert thresholds notify Finance before limits are breached. Per-provider cost dashboards.</p>
-        <div class="feat-tag">Budget Enforcement</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🔌</div>
+        <div class="feat-icon"><svg><use href="#icon-plug"/></svg></div>
         <h3>Drop-In API Compatibility</h3>
         <p>TraceLayer is 100% OpenAI API-compatible. Integration requires changing one line of code — your base URL. Existing OpenAI SDKs work without modification, including streaming.</p>
-        <div class="feat-tag">OpenAI Compatible</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🏢</div>
+        <div class="feat-icon"><svg><use href="#icon-building"/></svg></div>
         <h3>Multi-Tenant Architecture</h3>
         <p>Full data and policy isolation between tenants enforced at the database level via Row-Level Security. Each tenant has their own KMS encryption key. No shared state in the data path.</p>
-        <div class="feat-tag">RLS · Per-Tenant KMS</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🔔</div>
+        <div class="feat-icon"><svg><use href="#icon-bell"/></svg></div>
         <h3>SIEM Integration</h3>
         <p>Forward audit events to Splunk or Microsoft Sentinel in real time via HTTP Event Collector webhooks. Your SOC gets full visibility into AI activity without any new tooling.</p>
-        <div class="feat-tag">Splunk · Sentinel</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🌐</div>
+        <div class="feat-icon"><svg><use href="#icon-globe"/></svg></div>
         <h3>UK Data Residency</h3>
         <p>Deployed by default in AWS eu-west-2 (London). All data processing, audit storage, and encryption key management stays within UK borders. Purpose-built for FCA-regulated firms.</p>
-        <div class="feat-tag">AWS eu-west-2</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PERSONAS -->
-<section class="personas">
+<section class="personas" aria-label="Who it's for">
   <div class="section-inner">
     <div class="section-tag">MADE FOR YOUR WHOLE TEAM</div>
     <h2 class="section-headline">One platform. Every stakeholder satisfied.</h2>
     <div class="persona-grid">
       <div class="persona-card">
-        <div class="persona-avatar">⚖️</div>
+        <div class="persona-icon"><svg><use href="#icon-scales"/></svg></div>
         <h3>Compliance Officer</h3>
         <div class="persona-role">Governance & Audit</div>
         <ul class="persona-list">
@@ -632,7 +685,7 @@
         </ul>
       </div>
       <div class="persona-card">
-        <div class="persona-avatar">🔐</div>
+        <div class="persona-icon"><svg><use href="#icon-lock"/></svg></div>
         <h3>Security Analyst</h3>
         <div class="persona-role">Incident Response</div>
         <ul class="persona-list">
@@ -643,7 +696,7 @@
         </ul>
       </div>
       <div class="persona-card">
-        <div class="persona-avatar">💼</div>
+        <div class="persona-icon"><svg><use href="#icon-briefcase"/></svg></div>
         <h3>Finance Manager</h3>
         <div class="persona-role">Cost Control</div>
         <ul class="persona-list">
@@ -654,7 +707,7 @@
         </ul>
       </div>
       <div class="persona-card">
-        <div class="persona-avatar">👩‍💻</div>
+        <div class="persona-icon"><svg><use href="#icon-code"/></svg></div>
         <h3>Developer</h3>
         <div class="persona-role">Integration</div>
         <ul class="persona-list">
@@ -669,7 +722,7 @@
 </section>
 
 <!-- COMPLIANCE -->
-<section id="compliance" class="compliance">
+<section id="compliance" class="compliance" aria-label="Compliance and regulatory">
   <div class="section-inner">
     <div class="section-tag">COMPLIANCE & REGULATORY</div>
     <h2 class="section-headline">Built for the regulations that govern you.</h2>
@@ -677,28 +730,28 @@
     <div class="comp-grid">
       <div class="comp-list">
         <div class="comp-item">
-          <div class="comp-check">✓</div>
+          <div class="comp-check"><svg><use href="#icon-check"/></svg></div>
           <div>
             <h4>Immutable Evidence for Regulators</h4>
             <p>WORM-compliant audit logs with cryptographic hash-chaining. Produce signed evidence exports for the FCA, PRA, or your internal audit team on demand.</p>
           </div>
         </div>
         <div class="comp-item">
-          <div class="comp-check">✓</div>
+          <div class="comp-check"><svg><use href="#icon-check"/></svg></div>
           <div>
             <h4>GDPR Article 17 Compliance</h4>
             <p>Right to erasure fulfilled via crypto-shredding, not data deletion. Immutable audit integrity is preserved while the individual's identity is permanently severed.</p>
           </div>
         </div>
         <div class="comp-item">
-          <div class="comp-check">✓</div>
+          <div class="comp-check"><svg><use href="#icon-check"/></svg></div>
           <div>
             <h4>UK Data Residency Enforcement</h4>
             <p>Policy engine enforces that all AI requests remain within approved geographic boundaries. AWS eu-west-2 default. No data leaves the UK without an explicit policy exception.</p>
           </div>
         </div>
         <div class="comp-item">
-          <div class="comp-check">✓</div>
+          <div class="comp-check"><svg><use href="#icon-check"/></svg></div>
           <div>
             <h4>Third-Party Penetration Tested</h4>
             <p>TraceLayer requires a third-party pen test before every design partner goes live. Your security team gets independent assurance, not just our word.</p>
@@ -709,22 +762,22 @@
         <div class="framework-badge">
           <div class="fw-name">GDPR</div>
           <div class="fw-desc">Pseudonymisation, right to erasure, crypto-shredding, and data minimisation by design.</div>
-          <div class="fw-status">✓ SUPPORTED</div>
+          <div class="fw-status">SUPPORTED</div>
         </div>
         <div class="framework-badge">
           <div class="fw-name">SOC 2</div>
           <div class="fw-desc">Immutable audit trail, access controls, availability SLOs, and change management controls.</div>
-          <div class="fw-status">✓ SUPPORTED</div>
+          <div class="fw-status">SUPPORTED</div>
         </div>
         <div class="framework-badge">
           <div class="fw-name">FCA / PRA</div>
           <div class="fw-desc">UK data residency, tamper-evident evidence, DLP controls, and vendor governance documentation.</div>
-          <div class="fw-status">✓ SUPPORTED</div>
+          <div class="fw-status">SUPPORTED</div>
         </div>
         <div class="framework-badge">
           <div class="fw-name">ISO 27001</div>
           <div class="fw-desc">End-to-end encryption, least-privilege access, incident response, and supply chain security scanning.</div>
-          <div class="fw-status">✓ SUPPORTED</div>
+          <div class="fw-status">SUPPORTED</div>
         </div>
       </div>
     </div>
@@ -732,33 +785,33 @@
 </section>
 
 <!-- TECH STACK -->
-<section id="tech" class="tech">
+<section id="tech" class="tech" aria-label="Technology">
   <div class="section-inner">
     <div class="section-tag">TECHNOLOGY</div>
-    <h2 class="section-headline">Enterprise-grade components.<br>No lock-in.</h2>
+    <h2 class="section-headline">Enterprise-grade components. No lock-in.</h2>
     <p class="section-sub">TraceLayer is built on mature, well-supported open-source technologies and managed AWS services — chosen for performance, security, and operational maturity.</p>
     <div class="stack-grid">
-      <div class="stack-item"><div class="stack-icon">🔵</div><div class="stack-name">Go</div><div class="stack-role">Data Plane — Gateway</div></div>
-      <div class="stack-item"><div class="stack-icon">🐍</div><div class="stack-name">Python / FastAPI</div><div class="stack-role">Control Plane — Admin API</div></div>
-      <div class="stack-item"><div class="stack-icon">📜</div><div class="stack-name">Open Policy Agent</div><div class="stack-role">Policy Engine (OPA/Rego)</div></div>
-      <div class="stack-item"><div class="stack-icon">🔍</div><div class="stack-name">Microsoft Presidio</div><div class="stack-role">DLP / PII Detection</div></div>
-      <div class="stack-item"><div class="stack-icon">🐘</div><div class="stack-name">PostgreSQL (RDS)</div><div class="stack-role">Control Plane Database</div></div>
-      <div class="stack-item"><div class="stack-icon">🪣</div><div class="stack-name">AWS S3 Object Lock</div><div class="stack-role">WORM Audit Ledger</div></div>
-      <div class="stack-item"><div class="stack-icon">☸️</div><div class="stack-name">Kubernetes (EKS)</div><div class="stack-role">Container Orchestration</div></div>
-      <div class="stack-item"><div class="stack-icon">🏗️</div><div class="stack-name">Terraform</div><div class="stack-role">Infrastructure as Code</div></div>
-      <div class="stack-item"><div class="stack-icon">📊</div><div class="stack-name">OpenSearch</div><div class="stack-role">Audit Query & Search</div></div>
-      <div class="stack-item"><div class="stack-icon">📈</div><div class="stack-name">Prometheus + Grafana</div><div class="stack-role">Observability</div></div>
-      <div class="stack-item"><div class="stack-icon">⚛️</div><div class="stack-name">React (Vite + TS)</div><div class="stack-role">Admin Console</div></div>
-      <div class="stack-item"><div class="stack-icon">🔑</div><div class="stack-name">AWS KMS</div><div class="stack-role">Per-Tenant Key Management</div></div>
+      <div class="stack-item"><div class="stack-name">Go</div><div class="stack-role">Data Plane — Gateway</div></div>
+      <div class="stack-item"><div class="stack-name">Python / FastAPI</div><div class="stack-role">Control Plane — Admin API</div></div>
+      <div class="stack-item"><div class="stack-name">Open Policy Agent</div><div class="stack-role">Policy Engine (OPA/Rego)</div></div>
+      <div class="stack-item"><div class="stack-name">Microsoft Presidio</div><div class="stack-role">DLP / PII Detection</div></div>
+      <div class="stack-item"><div class="stack-name">PostgreSQL (RDS)</div><div class="stack-role">Control Plane Database</div></div>
+      <div class="stack-item"><div class="stack-name">AWS S3 Object Lock</div><div class="stack-role">WORM Audit Ledger</div></div>
+      <div class="stack-item"><div class="stack-name">Kubernetes (EKS)</div><div class="stack-role">Container Orchestration</div></div>
+      <div class="stack-item"><div class="stack-name">Terraform</div><div class="stack-role">Infrastructure as Code</div></div>
+      <div class="stack-item"><div class="stack-name">OpenSearch</div><div class="stack-role">Audit Query & Search</div></div>
+      <div class="stack-item"><div class="stack-name">Prometheus + Grafana</div><div class="stack-role">Observability</div></div>
+      <div class="stack-item"><div class="stack-name">React (Vite + TS)</div><div class="stack-role">Admin Console</div></div>
+      <div class="stack-item"><div class="stack-name">AWS KMS</div><div class="stack-role">Per-Tenant Key Management</div></div>
     </div>
   </div>
 </section>
 
 <!-- METRICS -->
-<section class="metrics">
+<section class="metrics" aria-label="Performance metrics">
   <div class="section-inner">
-    <div class="section-tag" style="color: var(--sky-light);">PERFORMANCE & RELIABILITY</div>
-    <h2 class="section-headline" style="color:white;">The numbers we're accountable to.</h2>
+    <div class="section-tag">PERFORMANCE & RELIABILITY</div>
+    <h2 class="section-headline">The numbers we're accountable to.</h2>
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-val">&lt;150<span class="metric-unit">ms</span></div>
@@ -781,22 +834,19 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-section" id="demo">
+<section class="cta-section" id="demo" aria-label="Call to action">
   <div class="section-inner">
     <h2 class="section-headline">Ready to govern your AI?</h2>
     <p>Join the TraceLayer design partner programme. One regulated UK firm at a time.</p>
-    <div class="cta-btns">
-      <a href="mailto:enterprise@tracelayer.io" class="btn-cta-primary">Book a 30-Minute Demo</a>
-      <a href="#" class="btn-cta-secondary">Read the Technical Docs</a>
-    </div>
+    <a href="mailto:enterprise@tracelayer.io" class="btn-primary">Book a 30-Minute Demo</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="logo">Trace<span>Layer</span></div>
+  <div class="logo">TraceLayer</div>
   <p>AI Governance Gateway for UK Regulated Enterprises</p>
-  <p style="margin-top:12px;">enterprise@tracelayer.io &nbsp;·&nbsp; docs.tracelayer.io &nbsp;·&nbsp; © 2025 TraceLayer</p>
+  <p style="margin-top:8px;">enterprise@tracelayer.io &nbsp;&middot;&nbsp; docs.tracelayer.io &nbsp;&middot;&nbsp; &copy; 2026 TraceLayer</p>
 </footer>
 
 </body>
